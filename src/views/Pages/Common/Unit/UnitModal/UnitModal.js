@@ -29,7 +29,7 @@ import {
 // ** Styles
 import '@styles/react/libs/flatpickr/flatpickr.scss'
 
-const CategoryModal = ({ open, handleModal, operationMood, selectedCategory, dispatch, selectCategory, getUpdate, loading, getInsert, ToastContent, toast, Slide, Check }) => {
+const UnitModal = ({ open, handleModal, operationMood, selectedUnit, dispatch, selectUnit, getUpdate, loading, getInsert, ToastContent, toast, Slide, Check }) => {
   // ** State
   const [Picker, setPicker] = useState(new Date())
 
@@ -38,10 +38,10 @@ const CategoryModal = ({ open, handleModal, operationMood, selectedCategory, dis
   const [status, SetStatus] = useState('')
   
   const handleSidebarOpened = () => {
-    if (!isObjEmpty(selectedCategory)) {
-      SetName(selectedCategory.category_name)
-      SetDescription(selectedCategory.description)
-      SetStatus(selectedCategory.status)
+    if (!isObjEmpty(selectedUnit)) {
+      SetName(selectedUnit.unit_name)
+      SetDescription(selectedUnit.description)
+      SetStatus(selectedUnit.status)
       console.log('SLIDE_VALUE_OPEN')
     }
   }
@@ -51,7 +51,7 @@ const CategoryModal = ({ open, handleModal, operationMood, selectedCategory, dis
     SetDescription('')
     SetStatus('')    
     console.log('SLIDE_VALUE_CLOSED')
-    dispatch(selectCategory({}))
+    dispatch(selectUnit({}))
   }
 
   const handleSubmit = (e, errors) => {
@@ -66,9 +66,9 @@ const CategoryModal = ({ open, handleModal, operationMood, selectedCategory, dis
     }
 
 
-    if (!isObjEmpty(selectedCategory)) {
+    if (!isObjEmpty(selectedUnit)) {
       console.log('UPDATE')
-      dispatch(getUpdate(state, selectedCategory.main_id))
+      dispatch(getUpdate(state, selectedUnit.main_id))
       toast.success(
         <ToastContent title="Success" body="Update Successfully" color="success" icon={<Check size={12}/>} />,
         { transition: Slide, hideProgressBar: true, autoClose: 2000 }
@@ -129,22 +129,22 @@ const CategoryModal = ({ open, handleModal, operationMood, selectedCategory, dis
       <ModalBody className='flex-grow-1'>
       <AvForm onSubmit={handleSubmit}>
         <AvGroup>
-          <Label for='category-name'>Category Name</Label>
+          <Label for='brand-name'>Unit Name</Label>
           <InputGroup>            
             <AvInput 
-            name='category-name'
-            id='category-name' 
-            placeholder='Category Name' 
+            name='unit-name'
+            id='unit-name' 
+            placeholder='Unit Name' 
             value={name}
             onChange={e => SetName(e.target.value)}
             required
              />
-             <AvFeedback>Please enter a category name!</AvFeedback>
+             <AvFeedback>Please enter a unit name!</AvFeedback>
           </InputGroup>
         </AvGroup>
         
         <FormGroup>
-          <Label for='post'>Category Description</Label>
+          <Label for='post'>Unit Description</Label>
           <InputGroup>            
             <Input 
             type='textarea' 
@@ -172,4 +172,4 @@ const CategoryModal = ({ open, handleModal, operationMood, selectedCategory, dis
   )
 }
 
-export default CategoryModal
+export default UnitModal

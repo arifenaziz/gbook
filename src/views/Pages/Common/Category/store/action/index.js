@@ -81,7 +81,7 @@ export const getUpdate=(category, id)=>{
 	return async (dispatch, getState) => {
 		dispatch(categoryFetchingStart())
 
-		await API.put('categoryProcess', formData)
+		await API.patch('categoryProcess', formData)
 		.then(response=>{					
 			dispatch(categoryUpdateSuccess())
 			dispatch(getProcess(getState().category.params))
@@ -108,6 +108,32 @@ export const getInsert=(category)=>{
 		dispatch(categoryFetchingStart())
 
 		await API.post('categoryProcess', formData)
+		.then(response=>{					
+			dispatch(categoryUpdateSuccess())
+			dispatch(getProcess(getState().category.params))
+		})
+		.catch(err=>{
+			console.log(err)
+			dispatch(categoryFetchingFail(err))
+		})		
+
+	}
+
+}
+
+
+export const getDelete=(id)=>{
+
+	const formData = {
+		id		
+	}
+
+	console.log('FORMDATA', formData)
+
+	return async (dispatch, getState) => {
+		dispatch(categoryFetchingStart())
+
+		await API.put('categoryProcess', formData)
 		.then(response=>{					
 			dispatch(categoryUpdateSuccess())
 			dispatch(getProcess(getState().category.params))

@@ -5,11 +5,11 @@ import { Fragment, useState, useEffect, memo } from 'react'
 import { statusList } from '../../../../../settings/status'
 
 // ** Store & Actions
-import { getProcess, selectCategory, getUpdate, getInsert, getDelete } from '../store/action'
+import { getProcess, selectBrand, getUpdate, getInsert, getDelete } from '../store/action'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast, Slide } from 'react-toastify'
 
-import CategoryModal from '../CategoryModal/CategoryModal'
+import BrandModal from '../BrandModal/BrandModal'
 
 // ** Third Party Components
 import ReactPaginate from 'react-paginate'
@@ -18,11 +18,11 @@ import Avatar from '@components/avatar'
 import DataTable from 'react-data-table-component'
 import { Card, CardHeader, CardTitle, Input, Label, Row, Col, Badge, Button } from 'reactstrap'
 
-const CategoryTable = () => {
+const BrandTable = () => {
   // ** Store Vars
   const dispatch = useDispatch()
-  const store = useSelector(state => state.category)
-  const loading = useSelector(state => state.category.loading)
+  const store = useSelector(state => state.brand)
+  const loading = useSelector(state => state.brand.loading)
 
   // ** States
   const [modal, setModal] = useState(false)
@@ -138,7 +138,7 @@ const CategoryTable = () => {
 
   const handleEditButtonClick = (state) => {
     setOperationMood(true)
-    dispatch(selectCategory(state))
+    dispatch(selectBrand(state))
     setModal(true)     
   }
 
@@ -152,7 +152,7 @@ const CategoryTable = () => {
 
   }
 
-  const categoryColumns = [
+  const Columns = [
     {
       name: '#',
       selector: 'id',
@@ -160,8 +160,8 @@ const CategoryTable = () => {
       width:'10%'      
     },
     {
-      name: 'Category Name',
-      selector: 'category_name',
+      name: 'Brand Name',
+      selector: 'brand_name',
       sortable: true,
       minWidth:'250px',      
       maxWidth:'250px'     
@@ -189,7 +189,6 @@ const CategoryTable = () => {
     },    
     {
       name: 'Actions',
-//      selector: 'main_id',
       sortable: false,
       minWidth:'250px',  
       maxWidth:'100x',    
@@ -235,12 +234,12 @@ const CategoryTable = () => {
     <Fragment>
       <Card>
         <CardHeader className='border-bottom'>
-          <CardTitle tag='h4'>Category</CardTitle>
+          <CardTitle tag='h4'>Brand</CardTitle>
 
           <div className='d-flex mt-md-0 mt-1'>
             <Button className='ml-2' color='primary' onClick={handleOpenButtonClick}>
               <Plus size={15} />
-              <span className='align-middle ml-50'>Add Category</span>
+              <span className='align-middle ml-50'>Add Brand</span>
             </Button>
           </div>
         
@@ -286,19 +285,19 @@ const CategoryTable = () => {
           pagination
           paginationServer
           className='react-dataTable'
-          columns={categoryColumns}
+          columns={Columns}
           sortIcon={<ChevronDown size={10} />}
           paginationComponent={CustomPagination}
           data={dataToRender()}
         />
       </Card>
-      <CategoryModal 
+      <BrandModal 
       open={modal} 
       handleModal={handleModal} 
       operationMood={operationMood} 
-      selectedCategory={store.selectedCategory}
+      selectedBrand={store.selectedBrand}
       dispatch={dispatch}
-      selectCategory={selectCategory}
+      selectBrand={selectBrand}
       getUpdate={getUpdate}
       loading={loading}
       getInsert={getInsert}
@@ -311,4 +310,4 @@ const CategoryTable = () => {
   )
 }
 
-export default memo(CategoryTable)
+export default memo(BrandTable)

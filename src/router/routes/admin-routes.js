@@ -15,5 +15,21 @@ export default [
         meta: {
           action: 'admin'
         }
-      }      
+      },
+      {
+        path: '/admin/brand',
+        exact: true,
+        component: lazy(() => import('../../views/Pages/Common/Brand')),
+        meta: {
+          action: 'admin'
+        }
+      },
+      {
+        path: '/admin/unit',
+        exact: true,
+        component: lazy(() => import('../../views/Pages/Common/Unit')),
+        meta: {
+          action: 'admin'
+        }
+      }                  
   ]

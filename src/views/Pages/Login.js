@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toast, Slide } from 'react-toastify'
 import InputPasswordToggle from '@components/input-password-toggle'
 import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input, CustomInput, Button } from 'reactstrap'
-import { AvForm, AvInput } from 'availity-reactstrap-validation-safe'
+import { AvForm, AvInput, AvGroup, AvFeedback } from 'availity-reactstrap-validation-safe'
 import '@styles/base/pages/page-auth.scss'
 import { useContext, useState } from 'react'
 import { Check, X } from 'react-feather'
@@ -161,7 +161,7 @@ const Login = () => {
             </CardTitle>
             <CardText className='mb-2'>Please sign-in to your account and start the adventure</CardText>
             <AvForm className='auth-login-form mt-2' onSubmit={handleSubmit}>
-              <FormGroup>
+              <AvGroup>
                 <Label className='form-label' for='login-email'>
                   Email
                 </Label>
@@ -179,13 +179,15 @@ const Login = () => {
                   autoFocus
                   type='email'
                   value={email}
-                  id='login-email'
-                  name='login-email'
+                  id='email'
+                  name='email'
                   placeholder='demo@example.com'
                   onChange={e => setEmail(e.target.value)}
+                  required
                 />
+              <AvFeedback>Please enter a valid email!</AvFeedback>
 
-              </FormGroup>
+              </AvGroup>
               <FormGroup>
                 <div className='d-flex justify-content-between'>
                   <Label className='form-label' for='login-password'>
