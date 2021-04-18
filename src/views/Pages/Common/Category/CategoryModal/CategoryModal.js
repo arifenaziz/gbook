@@ -166,6 +166,7 @@ const CategoryModal = ({ open, handleModal, operationMood, selectedCategory, dis
         <Button color='secondary' onClick={handleModal} outline>
           Cancel
         </Button>
+        
         </AvForm>
       </ModalBody>
     </Modal>

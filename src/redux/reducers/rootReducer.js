@@ -8,6 +8,7 @@ import layout from './layout'
 import category from '@src/views/Pages/Common/Category/store/reducer'
 import brand from '@src/views/Pages/Common/Brand/store/reducer'
 import unit from '@src/views/Pages/Common/Unit/store/reducer'
+import item from '@src/views/Pages/Common/Item/store/reducer'
 
 const rootReducer = combineReducers({
   auth,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   layout,
   category,
   brand,
-  unit
+  unit,
+  item
 })
 
 export default rootReducer

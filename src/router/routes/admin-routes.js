@@ -31,5 +31,13 @@ export default [
         meta: {
           action: 'admin'
         }
-      }                  
+      },
+      {
+        path: '/admin/item',
+        exact: true,
+        component: lazy(() => import('../../views/Pages/Common/Item')),
+        meta: {
+          action: 'admin'
+        }
+      }                        
   ]

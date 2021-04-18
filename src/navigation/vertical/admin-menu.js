@@ -40,7 +40,7 @@ export default [
         title: 'Items',
         icon: <Circle size={12} />,
         action: 'admin',
-        navLink: '/admin/home'
+        navLink: '/admin/item'
       }            
     ]
   }  

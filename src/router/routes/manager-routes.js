@@ -11,7 +11,7 @@ export default [
     {
       path: '/manager/item',
       exact: true,
-      component: lazy(() => import('../../views/Pages/Common/Item')),
+      component: lazy(() => import('../../views/Pages/Manager/Item')),
       meta: {
         action: 'manager'
       }
