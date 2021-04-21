@@ -193,24 +193,32 @@ const ItemTable = () => {
       maxWidth:'250px'     
     },
     {
-      name: 'Category Name',
-      selector: 'category_name',
+      name: 'Barcode',
+      selector: 'item_code',
       sortable: true,
       grow: 3,      
       maxWidth: '250px',
       hide:'sm'
     },
     {
-      name: 'Brand Name',
-      selector: 'brand_name',
+      name: 'Purchase Price',
+      selector: 'purchase_price',
       sortable: true,
       grow: 3,      
       maxWidth: '250px',
       hide:'sm'
-    },    
+    },  
     {
-      name: 'Item Type',
-      selector: 'item_type',
+      name: 'Sales Price',
+      selector: 'sale_price',
+      sortable: true,
+      grow: 3,      
+      maxWidth: '250px',
+      hide:'sm'
+    },      
+    {
+      name: 'Qnty',
+      selector: 'openning_quantity',
       sortable: true,
       grow: 3,      
       maxWidth: '150px',
