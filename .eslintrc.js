@@ -48,7 +48,7 @@ module.exports = {
     'no-mixed-operators': 'error',
     'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 1 }],
     //'no-tabs': 'error',
-    'no-unneeded-ternary': 'error',
+    //'no-unneeded-ternary': 'error',
     'no-whitespace-before-property': 'error',
     'nonblock-statement-body-position': 'error',
     'object-property-newline': ['error', { allowAllPropertiesOnSameLine: true }],

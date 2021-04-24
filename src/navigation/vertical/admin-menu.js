@@ -1,4 +1,4 @@
-import { Mail, Home, CheckCircle, Circle, Columns  } from 'react-feather'
+import { Mail, Home, CheckCircle, Circle, Columns, Users  } from 'react-feather'
 
 export default [
   {
@@ -43,5 +43,12 @@ export default [
         navLink: '/admin/item'
       }            
     ]
-  }  
+  },
+  {
+    id: 'customer',
+    title: 'Customer',
+    icon: <Users size={20} />,
+    navLink: '/admin/customers',
+    action: 'admin'    
+  }    
 ]
