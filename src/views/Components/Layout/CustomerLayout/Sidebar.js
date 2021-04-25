@@ -12,8 +12,6 @@ const Sidebar = props => {
   // ** Vars
   const params = useParams()
 
-  console.log('MAIN', type)
-
   // ** Functions To Handle Folder, Label & Compose
   const handleFolder = folder => {
     // dispatch(getMails({ ...store.params, folder }))

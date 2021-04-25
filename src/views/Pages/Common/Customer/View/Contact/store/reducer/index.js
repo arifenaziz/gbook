@@ -31,6 +31,14 @@ const customerReducer = (state = initialState, action) =>{
             success:true
         }
 
+        case actionType.CUSTOMER_CONTACT_UPDATE_SUCCESS:
+
+            return {
+                ...state,            
+                loading:false,
+                success:true
+            }        
+
         case actionType.CUSTOMER_CONTACT_FETACHING_FAIL:
 
             return {

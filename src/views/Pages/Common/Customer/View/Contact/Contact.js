@@ -1,5 +1,5 @@
 import Layout from "../../../../../Components/Layout/CustomerLayout/Layout"
-import { getProcess } from './store/action'
+import { getProcess, getUpdate, getDelete } from './store/action'
 import { Card, CardHeader, CardTitle, CardBody, FormGroup, Row, Col, Input, Form, Button, Label, CustomInput } from 'reactstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from "react"
@@ -30,6 +30,7 @@ useEffect(() => {
 
 
 const initialContactList={
+  id:'',
   contact_name:'',
   email:'',
   phone:'',
@@ -41,19 +42,12 @@ const [contactList, SetContactList] = useState(
   []
 )
 
-const fromdata = {
-  ...data
-}
-
-
 useEffect(() => {
   if (data !== null && data !== undefined) {
-  SetContactList([fromdata])        
+  SetContactList(data)        
   }
  }, [data, dispatch])
 
-
-//console.log(fromdata)
 
 const increaseContactList = () => {
   SetContactList(
@@ -64,10 +58,19 @@ const increaseContactList = () => {
   )
 }
 
-const deleteForm = i => {
+const deleteForm =( i, item ) => {
+  
+  if (item.id) {
+
+    dispatch(getDelete(item.id))
+
+  }
+  
   const updatedDataList=[...contactList]
   updatedDataList.splice(i, 1)
   SetContactList(updatedDataList)
+
+
 }
 
 const inputChangedHandaler = (event, position, identifier) => {
@@ -87,8 +90,22 @@ const inputChangedHandaler = (event, position, identifier) => {
 }
 
 
-const [remark, SetRemark] = useState('')
- 
+const handleSubmit = (e, errors) => {
+  e.preventDefault()
+
+  if (errors && !errors.length) {
+
+    const state = {      
+      contactList      
+    }
+
+    console.log('STATE', state)
+    dispatch(getUpdate(state, path.params.id))
+  
+  }
+
+}
+
 
 return (
 <>
@@ -102,14 +119,14 @@ return (
         <CardTitle tag='h4'>Contact Person</CardTitle>
       </CardHeader>
       <CardBody>        
-      <AvForm>
+      <AvForm onSubmit={handleSubmit}>
         <Row>
-        <Col>
+        <Col>        
 
           {
             contactList?.length ?(
             contactList.map((item, i)=>(
-              
+                            
             <section key={i}>              
               <Row className='justify-content-between align-items-center' >
                 <Col md={3}>
@@ -123,7 +140,7 @@ return (
                     bsSize='sm' 
                     value={item.contact_name || ''}                                       
                     onChange={(e) => inputChangedHandaler(e, i, 'contact_name' )} 
-                    required={i}                    
+                    required                    
                     />
                     <AvFeedback>Please enter a contact name!</AvFeedback>
                   </AvGroup>
@@ -184,7 +201,7 @@ return (
                 
                 <Col md={1}>
                   
-                <Button.Ripple color='danger' className='btn-icon rounded-circle' onClick={() => deleteForm(i) } outline size='sm'>
+                <Button.Ripple color='danger' className='btn-icon rounded-circle' onClick={() => deleteForm(i, item) } outline size='sm'>
                   <X size={14}  />                    
                   </Button.Ripple>
               
@@ -207,6 +224,19 @@ return (
         </Col>
 
       </Row> 
+
+      <Row className="mt-2"> 
+          <Col sm='12'>
+              <FormGroup className='d-flex mb-0'>
+                <div className='mr-1'>
+                  <Button.Ripple color='primary' type='submit' disabled={loading || !contactList.length}>
+                    Submit
+                  </Button.Ripple>
+                </div>
+                
+              </FormGroup>
+            </Col>     
+          </Row>       
 
         </AvForm>
       </CardBody>
