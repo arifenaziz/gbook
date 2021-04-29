@@ -8,11 +8,11 @@ const initialState={
 }
 
 
-const customerContactReducer = (state = initialState, action) =>{
+const supplierBankReducer = (state = initialState, action) =>{
 
     switch (action.type) {
 
-        case actionType.CUSTOMER_CONTACT_FETACHING_START:
+        case actionType.SUPPLIER_BANK_FETACHING_START:
 
         return {
             ...state,            
@@ -21,7 +21,7 @@ const customerContactReducer = (state = initialState, action) =>{
         }
   
 
-        case actionType.CUSTOMER_CONTACT_FETACHING_SUCCESS:
+        case actionType.SUPPLIER_BANK_FETACHING_SUCCESS:
 
         return {
             ...state,            
@@ -31,7 +31,7 @@ const customerContactReducer = (state = initialState, action) =>{
             success:true
         }
 
-        case actionType.CUSTOMER_CONTACT_UPDATE_SUCCESS:
+        case actionType.SUPPLIER_BANK_UPDATE_SUCCESS:
 
             return {
                 ...state,            
@@ -39,7 +39,7 @@ const customerContactReducer = (state = initialState, action) =>{
                 success:true
             }        
 
-        case actionType.CUSTOMER_CONTACT_FETACHING_FAIL:
+        case actionType.SUPPLIER_BANK_FETACHING_FAIL:
 
             return {
                 ...state,            
@@ -57,4 +57,4 @@ const customerContactReducer = (state = initialState, action) =>{
 
 }
 
-export default customerContactReducer
+export default supplierBankReducer

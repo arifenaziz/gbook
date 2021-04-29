@@ -6,6 +6,8 @@ import { Link, useHistory } from "react-router-dom"
 // ** Table Columns
 import { statusList } from '../../../../../settings/status'
 
+import Skeleton from 'react-loading-skeleton'
+
 // ** Store & Actions
 import { getProcess, selectCustomer, getUpdate, getDelete } from '../store/action'
 import { useSelector, useDispatch } from 'react-redux'
@@ -234,6 +236,15 @@ const CustomerTable = ( props ) => {
     </Fragment>
   )
 
+
+  if (loading) {
+    return (
+      <>
+      <Skeleton count={1} height={50}/>
+      <Skeleton count={1} height={150}/>
+      </>
+    )
+    }
 
   return (
     <Fragment>

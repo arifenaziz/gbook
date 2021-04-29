@@ -5,7 +5,7 @@ const initialState={
     total: 1,
     params: {},
     allData: [],
-    selectedCustomer: {},
+    selectedSupplier: {},
     error:false,
     loading:false,
     success:false,
@@ -13,11 +13,11 @@ const initialState={
 }
 
 
-const customerReducer = (state = initialState, action) =>{
+const supplierReducer = (state = initialState, action) =>{
 
     switch (action.type) {
 
-        case actionType.CUSTOMER_FETACHING_START:
+        case actionType.SUPPLIER_FETACHING_START:
 
         return {
             ...state,            
@@ -26,7 +26,7 @@ const customerReducer = (state = initialState, action) =>{
         }
   
 
-        case actionType.CUSTOMER_FETACHING_SUCCESS:
+        case actionType.SUPPLIER_FETACHING_SUCCESS:
 
         return {
             ...state,
@@ -40,7 +40,7 @@ const customerReducer = (state = initialState, action) =>{
             success:true
         }
 
-        case actionType.CUSTOMER_FETACHING_FAIL:
+        case actionType.SUPPLIER_FETACHING_FAIL:
 
             return {
                 ...state,            
@@ -48,20 +48,20 @@ const customerReducer = (state = initialState, action) =>{
                 loading:false,
                 success:false                             
          }    
-         case actionType.SELECT_SINGLE_CUSTOMER:
+         case actionType.SELECT_SINGLE_SUPPLIER:
 
             return {
                 ...state,            
-                selectedCustomer:action.customer                          
+                selectedSupplier:action.supplier                          
          }      
-         case actionType.CUSTOMER_UPDATE_SUCCESS:
+         case actionType.SUPPLIER_UPDATE_SUCCESS:
         
             return {
              ...state,            
              loading:false,                   
              operation:true
            }  
-           case actionType.CUSTOMER_UPDATE_RESET:
+           case actionType.SUPPLIER_UPDATE_RESET:
         
             return {
              ...state,            
@@ -78,4 +78,4 @@ const customerReducer = (state = initialState, action) =>{
 
 }
 
-export default customerReducer
+export default supplierReducer

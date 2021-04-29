@@ -140,5 +140,106 @@ export default [
         meta: {
           action: 'admin'
         }
-      }                                                                       
-  ]
+      },
+      {
+        path: '/admin/suppliers',
+        exact: true,
+        component: lazy(() => import('../../views/Pages/Common/Supplier')),
+        meta: {
+          action: 'admin'
+        }
+      },
+      {
+        path: '/admin/suppliers/new',
+        exact: true,
+        component: lazy(() => import('../../views/Pages/Common/Supplier/AddSupplier/AddSupplier')),
+        meta: {
+          action: 'admin'
+        }
+      },
+      {
+        path: '/admin/suppliers/edit/:id',
+        exact: true,
+        component: lazy(() => import('../../views/Pages/Common/Supplier/EditSupplier/EditSupplier')),
+        meta: {
+          action: 'admin'
+        }
+      },      
+      {
+        path: '/admin/suppliers/:id/overview',
+        exact: true,
+        appLayout: true,
+        className: 'email-application',
+        component: lazy(() => import('../../views/Pages/Common/Supplier/View/Overview/Overview')),
+        name: 'overview',
+        meta: {
+          action: 'admin'
+        }
+      },
+      {
+        path: '/admin/suppliers/:id/banks',
+        exact: true,
+        appLayout: true,
+        className: 'email-application',
+        component: lazy(() => import('../../views/Pages/Common/Supplier/View/Bank/Bank')),
+        name: 'banks',
+        meta: {
+          action: 'admin'
+        }
+      },      
+      {
+        path: '/admin/suppliers/:id/bills',
+        exact: true,
+        appLayout: true,
+        className: 'email-application',
+        component: lazy(() => import('../../views/Pages/Common/Supplier/View/Bill/Bill')),
+        name: 'bills',
+        meta: {
+          action: 'admin'
+        }
+      },
+      {
+        path: '/admin/suppliers/:id/payment',
+        exact: true,
+        appLayout: true,
+        className: 'email-application',
+        component: lazy(() => import('../../views/Pages/Common/Supplier/View/Payment/Payment')),
+        name: 'payment',
+        meta: {
+          action: 'admin'
+        }
+      },
+      {
+        path: '/admin/suppliers/:id/purchaseOrder',
+        exact: true,
+        appLayout: true,
+        className: 'email-application',
+        component: lazy(() => import('../../views/Pages/Common/Supplier/View/PurchaseOrder/PurchaseOrder')),
+        name: 'purchaseOrder',
+        meta: {
+          action: 'admin'
+        }
+      },
+      {
+        path: '/admin/suppliers/:id/expenses',
+        exact: true,
+        appLayout: true,
+        className: 'email-application',
+        component: lazy(() => import('../../views/Pages/Common/Supplier/View/Expenses/Expenses')),
+        name: 'expenses',
+        meta: {
+          action: 'admin'
+        }
+      },
+      {
+        path: '/admin/suppliers/:id/statement',
+        exact: true,
+        appLayout: true,
+        className: 'email-application',
+        component: lazy(() => import('../../views/Pages/Common/Supplier/View/Statement/Statement')),
+        name: 'statement',
+        meta: {
+          action: 'admin'
+        }
+      }      
+]

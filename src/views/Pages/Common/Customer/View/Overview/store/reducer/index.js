@@ -8,7 +8,7 @@ const initialState={
 }
 
 
-const customerReducer = (state = initialState, action) =>{
+const customerOverviewReducer = (state = initialState, action) =>{
 
     switch (action.type) {
 
@@ -49,4 +49,4 @@ const customerReducer = (state = initialState, action) =>{
 
 }
 
-export default customerReducer
+export default customerOverviewReducer

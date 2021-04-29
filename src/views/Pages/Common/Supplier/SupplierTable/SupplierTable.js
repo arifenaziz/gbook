@@ -1,15 +1,17 @@
 // ** React Imports
 import { Fragment, useState, useEffect, memo } from 'react'
 
+import { Link, useHistory } from "react-router-dom"
+
 // ** Table Columns
 import { statusList } from '../../../../../settings/status'
 
+import Skeleton from 'react-loading-skeleton'
+
 // ** Store & Actions
-import { getProcess, selectCategory, getUpdate, getInsert, getDelete } from '../store/action'
+import { getProcess, selectCustomer, getUpdate, getDelete } from '../store/action'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast, Slide } from 'react-toastify'
-
-import CategoryModal from '../CategoryModal/CategoryModal'
 
 // ** Third Party Components
 import ReactPaginate from 'react-paginate'
@@ -18,11 +20,14 @@ import Avatar from '@components/avatar'
 import DataTable from 'react-data-table-component'
 import { Card, CardHeader, CardTitle, Input, Label, Row, Col, Badge, Button } from 'reactstrap'
 
-const CategoryTable = () => {
+
+const SupplierTable = ( props ) => {
+
+  const history = useHistory()
   // ** Store Vars
   const dispatch = useDispatch()
-  const store = useSelector(state => state.category)
-  const loading = useSelector(state => state.category.loading)
+  const store = useSelector(state => state.supplier)
+  const loading = useSelector(state => state.supplier.loading)
 
   // ** States
   const [modal, setModal] = useState(false)
@@ -31,6 +36,9 @@ const CategoryTable = () => {
   const [searchValue, setSearchValue] = useState('')
   const [operationMood, setOperationMood] = useState(false)
 
+  console.log('props', props)
+
+  
   // ** Get data on mount
   useEffect(() => {
     dispatch(
@@ -132,13 +140,15 @@ const CategoryTable = () => {
   }
 
   const handleOpenButtonClick = () => {
-    setOperationMood(false)
-    setModal(true) 
+    //setOperationMood(false)
+    //setModal(true) 
+    history.push("/admin/suppliers/new")
+
   }
 
   const handleEditButtonClick = (state) => {
     setOperationMood(true)
-    dispatch(selectCategory(state))
+    dispatch(selectItem(state))
     setModal(true)     
   }
 
@@ -152,65 +162,61 @@ const CategoryTable = () => {
 
   }
 
-  const categoryColumns = [
+  const supplierColumns = [
+    
     {
-      name: '#',
-      selector: 'id',
-      sortable: true,
-      width:'10%'      
-    },
-    {
-      name: 'Category Name',
-      selector: 'category_name',
+      name: 'Supplier',
+      selector: 'supplier_name',
       sortable: true,
       minWidth:'250px',      
-      maxWidth:'250px'     
+      maxWidth:'250px',
+      cell: row => {
+        return (
+          <>
+          <Link to={`/admin/suppliers/${row.main_id}/overview`}>{row.supplier_name}</Link>                    
+          </>
+        )
+      }                     
     },
     {
-      name: 'Description',
-      selector: 'description',
+      name: 'Contact No',
+      selector: 'mobile',
       sortable: true,
       grow: 3,      
-      maxWidth: '350px',
+      maxWidth: '250px',
       hide:'sm'
     },
     {
-      name: 'Status',
-      selector: 'status',
+      name: 'Total Purchase',
+      selector: 'total_purchase',
       sortable: true,
-      maxWidth:'60x',      
-      cell: row => {
-        return (
-          <Badge color={statusList[row.status].color} pill>
-            {statusList[row.status].title}            
-          </Badge>
-        )
-      }
-    },    
+      grow: 3,      
+      maxWidth: '250px',
+      hide:'sm'
+    },  
     {
-      name: 'Actions',
-//      selector: 'main_id',
-      sortable: false,
-      minWidth:'250px',  
-      maxWidth:'100x',    
-      style:{
-        justifyContent: 'center'        
-      },      
-      cell: row => {
-        return (
-          <> 
-          
-            <Button.Ripple outline color='primary' size='sm' onClick={()=>handleEditButtonClick(row)} style={{marginRight:'5px'}} >   
-              <Edit size={14}/>Edit
-            </Button.Ripple>           
-
-            <Button.Ripple outline color='danger' size='sm' onClick={()=>handleDeleteButtonClick(row.main_id)} disabled={loading}>
-              <XCircle size={15}/>Delete
-            </Button.Ripple>  
-
-          </>
-        )
-      }
+      name: 'Transaction',
+      selector: 'transaction',
+      sortable: true,
+      grow: 3,      
+      maxWidth: '250px',
+      hide:'sm'
+    },      
+    {
+      name: 'Paid',
+      selector: 'paid',
+      sortable: true,
+      grow: 3,      
+      maxWidth: '150px',
+      hide:'sm'
+    }, 
+    {
+      name: 'Balance',
+      selector: 'balance',
+      sortable: true,
+      grow: 3,      
+      maxWidth: '150px',
+      hide:'sm'
     }
   ]
 
@@ -230,16 +236,25 @@ const CategoryTable = () => {
     </Fragment>
   )
 
+  if (loading) {
+  return (
+    <>
+    <Skeleton count={1} height={50}/>
+    <Skeleton count={1} height={150}/>
+    </>
+  )
+  }
+
   return (
     <Fragment>
       <Card>
         <CardHeader className='border-bottom'>
-          <CardTitle tag='h4'>Category</CardTitle>
+          <CardTitle tag='h4'> </CardTitle>
 
           <div className='d-flex mt-md-0 mt-1'>
             <Button className='ml-2' color='primary' onClick={handleOpenButtonClick}>
               <Plus size={15} />
-              <span className='align-middle ml-50'>Add Category</span>
+              <span className='align-middle ml-50'>Add Supplier</span>
             </Button>
           </div>
         
@@ -285,29 +300,15 @@ const CategoryTable = () => {
           pagination
           paginationServer
           className='react-dataTable'
-          columns={categoryColumns}
+          columns={supplierColumns}
           sortIcon={<ChevronDown size={10} />}
           paginationComponent={CustomPagination}
           data={dataToRender()}
         />
       </Card>
-      <CategoryModal 
-      open={modal} 
-      handleModal={handleModal} 
-      operationMood={operationMood} 
-      selectedCategory={store.selectedCategory}
-      dispatch={dispatch}
-      selectCategory={selectCategory}
-      getUpdate={getUpdate}
-      loading={loading}
-      getInsert={getInsert}
-      ToastContent={ToastContent}
-      toast={toast}
-      Slide={Slide}
-      Check={Check}
-      />
+      
     </Fragment>
   )
 }
 
-export default memo(CategoryTable)
+export default memo(SupplierTable)
