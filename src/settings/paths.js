@@ -1,1 +1,1 @@
-export const sitePath="http://localhost/previous/marketplace/api/gbook-api/"
+export const sitePath="https://gbook.ansharah.com/"
