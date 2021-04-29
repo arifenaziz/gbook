@@ -1,4 +1,4 @@
-import Layout from "../../../../../Components/Layout/SupplierLayout/Layout"
+import Layout from "../../../../../Components/Layout/CustomerLayout/Layout"
 
 import { Card, CardHeader, CardTitle, CardBody, FormGroup, Row, Col, Input, Form, Button, Label, CustomInput } from 'reactstrap'
 import { useSelector, useDispatch } from 'react-redux'
@@ -22,7 +22,7 @@ useEffect(() => {
   }, [])
 
 const handleOpenButtonClick = () => {
-    history.push(`/admin/suppliers/edit/${path.params.id}`)
+    history.push(`/admin/customers/edit/${path.params.id}`)
 }
 
 
